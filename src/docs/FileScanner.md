@@ -23,4 +23,4 @@ result.getNumDirectories();
 result.getTotalBytes();
 result.getAvgBytes();
 ```
-- Permission errors have not been handled in any other way than to print the directory that could not be accessed
+- Permission errors have not been handled in any other way than to print the directory that could not be accessed and skipping the sub-tree
