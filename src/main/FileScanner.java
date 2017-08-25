@@ -22,22 +22,23 @@ public class FileScanner {
             ipe.printStackTrace();
             return null;
         } catch (IOException e) {
+            System.err.println("Error while traversing file system.");
             e.printStackTrace();
             return null;
         }
     }
 
     /**
-     * Make use of FileVisitor interface to return the following information as
+     * Make use of {@Link FileVisitor} interface to return the following information as
      * the file system is traversed depth first from the path passed in by the user.
      * (Order of sub-directories is not guaranteed)
-     *
-     *      - Num of directories visited during traversal
-     *      - Num of files visited during traversal
-     *          - Links are not followed because they may lead to files outside the desired path
-     *          - Only regular files are counted
-     *      - Total number of bytes of the files counted during traversal
-     *      - Avg size of file counted in bytes
+     * <p>
+     * - Num of directories visited during traversal
+     * - Num of files visited during traversal
+     * -- Links are not followed because they may lead to files outside the desired path
+     * -- Only regular files are counted
+     * - Total number of bytes of the files counted during traversal
+     * - Avg size of file counted in bytes
      */
     public static class ScanResult implements FileVisitor {
         private static int numDirs = 0;
@@ -46,23 +47,23 @@ public class FileScanner {
 
         // return the number of files scanned
         public int getNumFiles() {
-            return this.numFiles;
+            return numFiles;
         }
 
         // return the number of directories scanned
         public int getNumDirectories() {
-            return this.numDirs;
+            return numDirs;
         }
 
         // return the total number of bytes contained within all scanned _files_
         public long getTotalBytes() {
-            return this.totalBytes;
+            return totalBytes;
         }
 
         // return the average size of the scanned _files_
         public long getAvgBytes() {
             try {
-                return this.totalBytes / this.numFiles;
+                return totalBytes / numFiles;
             } catch (ArithmeticException ae) {
                 System.err.println("Attempting to divide size of files by 0 files");
                 ae.printStackTrace();
@@ -101,7 +102,7 @@ public class FileScanner {
         @Override
         public FileVisitResult visitFile(Object file, BasicFileAttributes attrs) throws IOException {
             if (attrs.isRegularFile()) {
-                this.numFiles++;
+                numFiles++;
                 totalBytes = this.getTotalBytes() + attrs.size();
             }
             return CONTINUE;
