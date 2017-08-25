@@ -13,8 +13,9 @@ public class FileScanner {
 
     /*
     I was looking to make this a singleton but got blocked by returning a ScanResult type here
-    instead of a FileScanner.  I a singleton seemed appropriate here but did not want to change
-    the method signature.
+    instead of a FileScanner.  I thought a singleton seemed appropriate here but did not want to change
+    the method signature. My assumption that the need is for any FileScanner that has been
+    instantiated to always return the results for the latest that was created.
      */
     public static ScanResult scan(String path) {
         try {
@@ -36,7 +37,6 @@ public class FileScanner {
     /**
      * Make use of {@Link FileVisitor} interface to return the following information as
      * the file system is traversed depth first from the path passed in by the user.
-     * (Order of sub-directories is not guaranteed)
      * <p>
      * - Num of directories visited during traversal
      * -- Including the path passed in
@@ -126,8 +126,8 @@ public class FileScanner {
          */
         @Override
         public FileVisitResult visitFileFailed(Object file, IOException exc) throws IOException {
-            exc.printStackTrace();
-            return CONTINUE;
+            System.err.println(String.format("Error accessing file: %s", exc.getMessage()));
+            return SKIP_SUBTREE;
         }
 
         /**
