@@ -12,21 +12,19 @@
 - Java SDK Version 8
 - Must instantiate InputAndAnalysis with a valid path to a file
 - Once an object is successfully created you must run the object
-    -
     ```java
     InputAndAnalysis iaa = new InputAndAnalysis("/valid/path/to/file.txt");
    iaa.run();
     ```
 - Once the object has been run the user can print the desired report via the object's toString method
-    -
     ```java
     System.out.println(iaa);
     ```
 - The public API will also be ready for consumption
-    -
     ```java
     iaa.getTotal();
     iaa.getAverage();
     iaa.getMedian();
     iaa.getCountOfNumbers();
-    iaa.contains();
+    iaa.contains(String src);
+    ```
