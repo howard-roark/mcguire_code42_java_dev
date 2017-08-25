@@ -1,0 +1,125 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FileScannerTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FileScannerTest (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FileScannerTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import main.FileScanner;
+<i>4</i>&nbsp;import org.testng.annotations.BeforeClass;
+<i>5</i>&nbsp;import org.testng.annotations.Test;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.io.File;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import static main.FileScanner.ScanResult;
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;public class FileScannerTest {</b>
+<i>12</i>&nbsp;    private static ScanResult sr;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    @BeforeClass
+<i>15</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>16</i>&nbsp;        String parDir = new File(&quot;&quot;).getAbsolutePath();</b>
+<b class="fc"><i>17</i>&nbsp;        String pathToSampleDir = parDir + &quot;/src/test/test_dir&quot;;</b>
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;        FileScanner fs = new FileScanner();</b>
+<b class="fc"><i>20</i>&nbsp;        sr = fs.scan(pathToSampleDir);</b>
+<b class="fc"><i>21</i>&nbsp;    }</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @Test
+<i>24</i>&nbsp;    public void testGetNumFiles() {
+<b class="fc"><i>25</i>&nbsp;        assert sr.getNumFiles() == 3;</b>
+<b class="fc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @Test
+<i>29</i>&nbsp;    public void testGetNumDirectories() {
+<b class="fc"><i>30</i>&nbsp;        assert sr.getNumDirectories() == 4;</b>
+<b class="fc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    @Test
+<i>34</i>&nbsp;    public void testGetTotalBytes() {
+<b class="fc"><i>35</i>&nbsp;        assert sr.getTotalBytes() == 32562;</b>
+<b class="fc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    @Test
+<i>39</i>&nbsp;    public void testGetAvgBytes() {
+<b class="fc"><i>40</i>&nbsp;        assert sr.getAvgBytes() == 10854;</b>
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-08-24 20:18</div>
+</div>
+</body>
+</html>
