@@ -67,11 +67,13 @@ public class InputAndAnalysis {
     }
 
     private void setMedian() {
-        int mid = this.numbers.size() / 2;
-        if (mid % 2 == 1) {
-            this.medianOfAllNumbers = this.numbers.get(mid);
-        } else {
-            this.medianOfAllNumbers = ((this.numbers.get(mid - 1) + this.numbers.get(mid)) / 2.0);
+        if (!this.numbers.isEmpty()) {
+            int mid = this.numbers.size() / 2;
+            if (mid % 2 == 1) {
+                this.medianOfAllNumbers = this.numbers.get(mid);
+            } else {
+                this.medianOfAllNumbers = ((this.numbers.get(mid - 1) + this.numbers.get(mid)) / 2.0);
+            }
         }
     }
 
@@ -203,6 +205,11 @@ public class InputAndAnalysis {
     public static void main(String[] args) {
         String parDir = new File("").getAbsolutePath();
         String pathToSampleData = parDir + "/src/test/sample_data.txt";
+
+        // Pass in an absolute path to a file to be read as a program argument
+        if (args.length == 1) {
+            pathToSampleData = args[0];
+        }
 
         InputAndAnalysis iaa = new InputAndAnalysis(pathToSampleData);
         iaa.run();

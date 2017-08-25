@@ -11,6 +11,11 @@ import static java.nio.file.FileVisitResult.*;
  */
 public class FileScanner {
 
+    /*
+    I was looking to make this a singleton but got blocked by returning a ScanResult type here
+    instead of a FileScanner.  I a singleton seemed appropriate here but did not want to change
+    the method signature.
+     */
     public static ScanResult scan(String path) {
         try {
             Path p = Paths.get(path);
@@ -34,6 +39,7 @@ public class FileScanner {
      * (Order of sub-directories is not guaranteed)
      * <p>
      * - Num of directories visited during traversal
+     * -- Including the path passed in
      * - Num of files visited during traversal
      * -- Links are not followed because they may lead to files outside the desired path
      * -- Only regular files are counted
@@ -120,7 +126,7 @@ public class FileScanner {
          */
         @Override
         public FileVisitResult visitFileFailed(Object file, IOException exc) throws IOException {
-            System.err.println(exc);
+            exc.printStackTrace();
             return CONTINUE;
         }
 
